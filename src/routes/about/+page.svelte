@@ -30,7 +30,7 @@
 		<h2 id="bio-heading">Biografía</h2>
 		<p>{resume.about.bio}</p>
 	</section>
-
+	
 	<section aria-labelledby="facts-heading">
 		<h2 id="facts-heading">Datos de interés</h2>
 		<ul>

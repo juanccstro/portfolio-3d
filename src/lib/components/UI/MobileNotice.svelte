@@ -14,15 +14,15 @@
 {#if shouldShow && !mobile.dismissed}
 	<div class="mobile-notice" role="alertdialog" aria-modal="true" aria-label="Aviso de tamaño de pantalla">
 		<h2>Mejor en escritorio</h2>
-		<p>Esta experiencia 3D está optimizada para pantallas más grandes.<br />Aun así, puedes continuar en el móvil.</p>
-		<button class="continue-btn" onclick={dismissMobileNotice}>Continuar de todos modos</button>
+		<p>Esta experiencia 3D está optimizada para pantallas más grandes.<br />Aun así, puedes entrar en el móvil.</p>
+		<button class="continue-btn" onclick={dismissMobileNotice}>Entrar de todos modos</button>
 	</div>
 {/if}
 
 <style>
 	.mobile-notice {
 		position: fixed;
-		inset: 0;
+		inset: 0; //prueba
 		z-index: 200;
 		display: flex;
 		flex-direction: column;
