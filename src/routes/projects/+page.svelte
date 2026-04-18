@@ -2,36 +2,39 @@
 	import { resume } from '$lib/data/resume.js';
 	import { onMount } from 'svelte';
 
-	onMount(() => { document.body.classList.add('scrollable'); return () => document.body.classList.remove('scrollable'); });
+	onMount(() => { 
+		document.body.classList.add('scrollable'); 
+		return () => document.body.classList.remove('scrollable'); 
+	});
 </script>
 
 <svelte:head>
-	<title>Projects — {resume.about.name}</title>
-	<meta name="description" content="Portfolio projects by {resume.about.name}: {resume.projects.map(p => p.name).join(', ')}. {resume.about.role} specialising in {resume.skills.frontend.slice(0,3).join(', ')}." />
-	<link rel="canonical" href="https://alexmorgan.dev/projects" />
+	<title>Proyectos — {resume.about.name}</title>
+	<meta name="description" content="Proyectos del portafolio de {resume.about.name}: {resume.projects.map(p => p.name).join(', ')}. {resume.about.role} especializado en {resume.skills.frontend.slice(0,3).join(', ')}." />
+	<link rel="canonical" href="https://tu-dominio.dev/proyectos" />
 </svelte:head>
 
 <div class="page">
-	<a href="/" class="back-link">← Back to 3D Portfolio</a>
+	<a href="/" class="back-link">← Volver al Portfolio 3D</a>
 
 	<header>
-		<h1>Projects</h1>
+		<h1>Proyectos</h1>
 		<p class="role">{resume.about.name} · {resume.about.role}</p>
 	</header>
 
-	<section aria-label="Project portfolio">
+	<section aria-label="Portafolio de proyectos">
 		<div class="project-grid">
 			{#each resume.projects as project}
 				<article class="project-card">
 					<h2>{project.name}</h2>
 					<p>{project.desc}</p>
-					<ul class="tech-list" aria-label="Technologies">
+					<ul class="tech-list" aria-label="Tecnologías">
 						{#each project.tech as tech}
 							<li>{tech}</li>
 						{/each}
 					</ul>
 					{#if project.url}
-						<a href={project.url} class="project-link" rel="noopener">View project →</a>
+						<a href={project.url} class="project-link" rel="noopener">Ver proyecto →</a>
 					{/if}
 				</article>
 			{/each}

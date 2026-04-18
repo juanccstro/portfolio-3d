@@ -3,8 +3,8 @@
 </script>
 
 {#if !loading.done}
-	<div class="loading-screen" role="status" aria-live="polite" aria-label="Loading 3D scene">
-		<div class="loader-title">Portfolio Room</div>
+	<div class="loading-screen" role="status" aria-live="polite" aria-label="Cargando escena 3D">
+		<div class="loader-title">Habitación Portfolio</div>
 		<div class="loader-bar-wrap">
 			<div class="loader-bar" style="width: {loading.progress}%"></div>
 		</div>
@@ -13,6 +13,7 @@
 {/if}
 
 <style>
+	/* Los estilos se mantienen iguales ya que no contienen texto */
 	.loading-screen {
 		position: fixed;
 		inset: 0;

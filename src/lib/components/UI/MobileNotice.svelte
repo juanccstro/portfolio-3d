@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { mobile, dismissMobileNotice } from '$lib/stores/ui.svelte.js';
 
-	// Only show on small screens and only once
+	// Solo mostrar en pantallas pequeñas y solo una vez
 	let shouldShow = $state(false);
 
 	$effect(() => {
@@ -12,10 +12,10 @@
 </script>
 
 {#if shouldShow && !mobile.dismissed}
-	<div class="mobile-notice" role="alertdialog" aria-modal="true" aria-label="Screen size notice">
-		<h2>Best on desktop</h2>
-		<p>This 3D experience is optimised for a larger screen.<br />You can still continue on mobile.</p>
-		<button class="continue-btn" onclick={dismissMobileNotice}>Continue anyway</button>
+	<div class="mobile-notice" role="alertdialog" aria-modal="true" aria-label="Aviso de tamaño de pantalla">
+		<h2>Mejor en escritorio</h2>
+		<p>Esta experiencia 3D está optimizada para pantallas más grandes.<br />Aun así, puedes continuar en el móvil.</p>
+		<button class="continue-btn" onclick={dismissMobileNotice}>Continuar de todos modos</button>
 	</div>
 {/if}
 

@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { loading, focus } from '$lib/stores/scene.svelte.js';
 
-	// Hint fades out once the user interacts
+	// La sugerencia desaparece cuando el usuario interactúa
 	let dismissed = $state(false);
 
 	$effect(() => {
@@ -9,9 +9,11 @@
 	});
 
 	const isTouchDevice = typeof window !== 'undefined' && 'ontouchstart' in window;
+	
+	// Traducción adaptada al contexto táctil o de escritorio
 	const hintText = isTouchDevice
-		? 'Tap an object · Drag to orbit · Pinch to zoom'
-		: 'Click an object to explore · Drag to orbit · Scroll to zoom';
+		? 'Toca un objeto · Arrastra para rotar · Pincha para ampliar'
+		: 'Haz clic en un objeto para explorar · Arrastra para rotar · Scroll para zoom';
 </script>
 
 {#if loading.done && !dismissed}

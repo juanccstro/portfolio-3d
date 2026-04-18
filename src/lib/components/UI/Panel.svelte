@@ -19,21 +19,19 @@
 	class:open={panel.open}
 	role="dialog"
 	aria-modal="true"
-	aria-label={panel.content?.title ?? 'Detail panel'}
+	aria-label={panel.content?.title ?? 'Panel de detalles'}
 	aria-hidden={!panel.open}
 >
-	<button class="panel-close" onclick={handleClose} aria-label="Close panel">✕</button>
+	<button class="panel-close" onclick={handleClose} aria-label="Cerrar panel">✕</button>
 
 	{#if panel.content}
 		<h2 class="panel-title">{panel.content.title}</h2>
-		<!-- eslint-disable-next-line svelte/no-at-html-tags -->
 		<div class="panel-body">{@html panel.content.html}</div>
 	{/if}
 </div>
 
-<!-- Backdrop -->
 {#if panel.open}
-	<button class="panel-backdrop" onclick={handleClose} aria-label="Close panel" tabindex="-1"></button>
+	<button class="panel-backdrop" onclick={handleClose} aria-label="Cerrar panel" tabindex="-1"></button>
 {/if}
 
 <style>

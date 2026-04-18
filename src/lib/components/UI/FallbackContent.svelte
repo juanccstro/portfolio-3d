@@ -1,34 +1,32 @@
 <script lang="ts">
-	// FallbackContent.svelte — SEO-critical semantic HTML that lives outside the canvas.
+	// FallbackContent.svelte — Contenido HTML semántico crítico para SEO que vive fuera del canvas.
 	//
-	// Strategy:
-	//   • When WebGL is available: hidden visually but present in DOM (crawlable by Google).
-	//     Screen readers can still access it. 3D scene is the primary visual.
-	//   • When WebGL is unavailable: shown as the full static portfolio.
+	// Estrategia:
+	//   • Cuando WebGL está disponible: oculto visualmente pero presente en el DOM (rastreable por Google).
+	//     Los lectores de pantalla aún pueden acceder a él. La escena 3D es el elemento visual principal.
+	//   • Cuando WebGL no está disponible: se muestra como el portafolio estático completo.
 	//
-	// Google's crawler does NOT render WebGL. This component ensures all resume
-	// content is in the HTML source, indexed, and linkable without JavaScript.
+	// El rastreador de Google NO renderiza WebGL. Este componente asegura que todo el contenido
+	// del currículum esté en el código fuente HTML, indexado y vinculable sin JavaScript.
 
 	import { resume } from '$lib/data/resume.js';
 	import { webgl } from '$lib/stores/scene.svelte.js';
 </script>
 
 <div class="fallback-root" class:webgl-hidden={webgl.supported && webgl.checked}>
-	<!-- ── Header ─────────────────────────────────────────────────── -->
 	<header class="fb-header">
 		<div class="fb-container">
 			<h1>{resume.about.name}</h1>
 			<p class="tagline">{resume.about.role}</p>
 			{#if resume.contact.available}
-				<span class="badge">Open to opportunities</span>
+				<span class="badge">Disponible para oportunidades</span>
 			{/if}
 		</div>
 	</header>
 
 	<main class="fb-container">
-		<!-- ── About ───────────────────────────────────────────────── -->
 		<section id="about" aria-labelledby="about-heading">
-			<h2 id="about-heading">About Me</h2>
+			<h2 id="about-heading">Sobre mí</h2>
 			<p>{resume.about.bio}</p>
 			<ul class="facts-list">
 				{#each resume.about.facts as fact}
@@ -44,9 +42,8 @@
 			</div>
 		</section>
 
-		<!-- ── Skills ─────────────────────────────────────────────── -->
 		<section id="skills" aria-labelledby="skills-heading">
-			<h2 id="skills-heading">Skills &amp; Technologies</h2>
+			<h2 id="skills-heading">Habilidades y Tecnologías</h2>
 
 			<div class="skill-grid">
 				<article>
@@ -68,7 +65,7 @@
 				</article>
 
 				<article>
-					<h3>Tools &amp; DevOps</h3>
+					<h3>Herramientas y DevOps</h3>
 					<ul>
 						{#each resume.skills.tools as skill}
 							<li>{skill}</li>
@@ -78,31 +75,29 @@
 			</div>
 		</section>
 
-		<!-- ── Projects ───────────────────────────────────────────── -->
 		<section id="projects" aria-labelledby="projects-heading">
-			<h2 id="projects-heading">Projects</h2>
+			<h2 id="projects-heading">Proyectos</h2>
 
 			<div class="project-grid">
 				{#each resume.projects as project}
 					<article class="project-card">
 						<h3>{project.name}</h3>
 						<p>{project.desc}</p>
-						<ul class="tech-list" aria-label="Technologies used">
+						<ul class="tech-list" aria-label="Tecnologías utilizadas">
 							{#each project.tech as tech}
 								<li>{tech}</li>
 							{/each}
 						</ul>
 						{#if project.url}
-							<a href={project.url} rel="noopener" class="project-link">View project →</a>
+							<a href={project.url} rel="noopener" class="project-link">Ver proyecto →</a>
 						{/if}
 					</article>
 				{/each}
 			</div>
 		</section>
 
-		<!-- ── Contact ────────────────────────────────────────────── -->
 		<section id="contact" aria-labelledby="contact-heading">
-			<h2 id="contact-heading">Contact</h2>
+			<h2 id="contact-heading">Contacto</h2>
 			<address>
 				<dl>
 					<dt>Email</dt>
@@ -117,7 +112,7 @@
 					<dt>Twitter</dt>
 					<dd>{resume.contact.twitter}</dd>
 
-					<dt>Location</dt>
+					<dt>Ubicación</dt>
 					<dd>{resume.contact.location}</dd>
 				</dl>
 			</address>
@@ -126,8 +121,8 @@
 </div>
 
 <style>
-	/* When WebGL is active: visually hide but keep in DOM for SEO + a11y.
-	   `visibility: hidden` is better than `display: none` for crawlers. */
+	/* Cuando WebGL está activo: ocultar visualmente pero mantener en el DOM para SEO y accesibilidad.
+	   `visibility: hidden` es mejor que `display: none` para los rastreadores. */
 	.fallback-root.webgl-hidden {
 		position: absolute;
 		width: 1px;
@@ -138,7 +133,7 @@
 		border: 0;
 	}
 
-	/* When WebGL is unavailable: render as a clean static portfolio */
+	/* Cuando WebGL no está disponible: renderizar como un portafolio estático limpio */
 	.fallback-root:not(.webgl-hidden) {
 		min-height: 100vh;
 		background: #0d0d1a;
@@ -146,7 +141,7 @@
 		font-family: system-ui, -apple-system, sans-serif;
 		line-height: 1.6;
 	}
-
+    
 	.fb-header {
 		padding: 80px 24px 48px;
 		text-align: center;

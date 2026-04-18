@@ -8,33 +8,30 @@
 
 <svelte:window on:keydown={handleKeydown} />
 
-<!-- Help button -->
 <button
 	class="help-btn"
 	class:active={help.open}
 	onclick={toggleHelp}
-	aria-label="Controls & instructions"
+	aria-label="Controles e instrucciones"
 	aria-expanded={help.open}
 >?</button>
 
-<!-- Modal -->
 {#if help.open}
-	<!-- svelte-ignore a11y_no_noninteractive_element_interactions -->
 	<div
 		class="help-modal"
 		role="dialog"
 		aria-modal="true"
-		aria-label="Controls & Instructions"
+		aria-label="Controles e Instrucciones"
 	>
-		<div class="help-title">Controls &amp; Guide</div>
+		<div class="help-title">Controles y Guía</div>
 
 		<section class="help-section">
-			<div class="help-section-label">Navigate</div>
+			<div class="help-section-label">Navegación</div>
 			{#each [
-				['🖱️', 'Drag',         'Orbit / rotate the room'],
-				['⚙️', 'Scroll',        'Zoom in & out'],
-				['👆', 'Click object',  'Fly to it and open detail panel'],
-				['⎋',  'Esc',           'Close panel and reset view'],
+				['🖱️', 'Arrastrar', 'Desplazarse / rotar la habitación'],
+				['⚙️', 'Scroll',    'Acercar y alejar'],
+				['👆', 'Clic objeto', 'Volar hacia él y abrir detalles'],
+				['⎋',  'Esc',         'Cerrar panel y resetear vista'],
 			] as [icon, key, val]}
 				<div class="help-row">
 					<span class="help-icon" aria-hidden="true">{icon}</span>
@@ -49,13 +46,13 @@
 		<hr class="help-divider" />
 
 		<section class="help-section">
-			<div class="help-section-label">Interactive Objects</div>
+			<div class="help-section-label">Objetos Interactivos</div>
 			{#each [
-				['💻', 'Laptop',     'Projects & work'],
-				['📚', 'Bookshelf',  'Skills & technologies'],
-				['🖼️', 'Wall Frame', 'About me'],
-				['👨‍💻', 'Developer',  'Contact info'],
-				['💡', 'Desk Lamp',  'Click to toggle the lamp on / off'],
+				['💻', 'Portátil',   'Proyectos y trabajo'],
+				['📚', 'Estantería', 'Habilidades y tecnologías'],
+				['🖼️', 'Cuadro',     'Sobre mí'],
+				['👨‍💻', 'Desarrollador', 'Información de contacto'],
+				['💡', 'Lámpara',      'Haz clic para encender/apagar la luz'],
 			] as [icon, key, val]}
 				<div class="help-row">
 					<span class="help-icon" aria-hidden="true">{icon}</span>
@@ -70,15 +67,14 @@
 		<hr class="help-divider" />
 
 		<p class="help-tip">
-			Room lighting changes with the real time of day.
-			The developer goes to bed at 11&nbsp;PM and returns to the desk at&nbsp;7&nbsp;AM.
+			La iluminación de la habitación cambia según la hora real. 
+			El desarrollador se va a dormir a las 11&nbsp;PM y vuelve a su escritorio a las&nbsp;7&nbsp;AM.
 		</p>
 
-		<button class="help-close" onclick={closeHelp} aria-label="Close help">✕</button>
+		<button class="help-close" onclick={closeHelp} aria-label="Cerrar ayuda">✕</button>
 	</div>
 
-	<!-- Backdrop -->
-	<button class="modal-backdrop" onclick={closeHelp} aria-label="Close help" tabindex="-1"></button>
+	<button class="modal-backdrop" onclick={closeHelp} aria-label="Cerrar ayuda" tabindex="-1"></button>
 {/if}
 
 <style>

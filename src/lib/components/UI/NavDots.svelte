@@ -4,10 +4,10 @@
 	import type { SceneObjectKey } from '$lib/stores/scene.svelte.js';
 
 	const DOTS: { key: SceneObjectKey; label: string }[] = [
-		{ key: 'laptop',    label: 'Projects' },
-		{ key: 'bookshelf', label: 'Skills'   },
-		{ key: 'frame',     label: 'About Me' },
-		{ key: 'character', label: 'Contact'  }
+		{ key: 'laptop',    label: 'Proyectos' },
+		{ key: 'bookshelf', label: 'Habilidades' },
+		{ key: 'frame',      label: 'Sobre mí' },
+		{ key: 'character', label: 'Contacto'  }
 	];
 
 	function navigate(key: SceneObjectKey) {
@@ -17,7 +17,7 @@
 </script>
 
 {#if loading.done}
-	<nav class="nav-dots" aria-label="Quick navigation">
+	<nav class="nav-dots" aria-label="Navegación rápida">
 		{#each DOTS as { key, label }}
 			<button
 				class="nav-dot"
