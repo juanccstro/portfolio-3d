@@ -1,101 +1,92 @@
-// ─── Types ────────────────────────────────────────────────────────────────────
+// ─── Tipos ────────────────────────────────────────────────────────────────────
 
 export interface ResumeLink {
-	label: string;
-	url: string;
-	type: 'primary' | 'secondary';
+    label: string;
+    url: string;
+    type: 'primary' | 'secondary';
 }
 
 export interface ResumeAbout {
-	name: string;
-	role: string;
-	bio: string;
-	facts: string[];
-	links: ResumeLink[];
+    name: string;
+    role: string;
+    bio: string;
+    facts: string[];
+    links: ResumeLink[];
 }
 
 export interface ResumeProject {
-	name: string;
-	desc: string;
-	tech: string[];
-	url?: string;
+    name: string;
+    desc: string;
+    tech: string[];
+    url?: string;
 }
 
 export interface ResumeSkills {
-	frontend: string[];
-	backend: string[];
-	tools: string[];
+    frontend: string[];
+    backend: string[];
+    tools: string[];
 }
 
 export interface ResumeContact {
-	email: string;
-	github: string;
-	linkedin: string;
-	twitter: string;
-	location: string;
-	available: boolean;
+    email: string;
+    github: string;
+    linkedin: string;
+    twitter: string;
+    location: string;
+    available: boolean;
 }
 
 export interface ResumeData {
-	about: ResumeAbout;
-	projects: ResumeProject[];
-	skills: ResumeSkills;
-	contact: ResumeContact;
+    about: ResumeAbout;
+    projects: ResumeProject[];
+    skills: ResumeSkills;
+    contact: ResumeContact;
 }
 
-// ─── Data ─────────────────────────────────────────────────────────────────────
-// Edit this file to update your portfolio content.
-// The 3D scene reads from this same source, so changes here update both the
-// interactive room labels AND the SEO-friendly HTML fallback pages.
+// ─── Datos ─────────────────────────────────────────────────────────────────────
+// Edita este archivo para actualizar el contenido de tu portfolio.
+// La escena 3D lee de esta misma fuente, por lo que los cambios aquí actualizan tanto
+// las etiquetas de la habitación interactiva como las páginas HTML de respaldo para SEO.
 
 export const resume: ResumeData = {
-	about: {
-		name: 'Alex Morgan',
-		role: 'Full-Stack & Creative Developer',
-		bio: 'I build fast, accessible, and visually rich web applications. Passionate about bridging design and engineering — from pixel-perfect interfaces to robust backend systems.',
-		facts: ['5+ years experience', '20+ shipped products', 'Open-source contributor', 'Coffee-driven'],
-		links: [
-			{ label: 'GitHub', url: 'https://github.com/alexmorgan', type: 'primary' },
-			{ label: 'Portfolio', url: '/', type: 'secondary' },
-			{ label: 'Resume PDF', url: '#', type: 'secondary' }
-		]
-	},
+    about: {
+        name: 'Juan Carlos Castro',
+        role: 'Desarrollador Web Junior | Estudiante de IA & Big Data',
+        bio: 'Desarrollador Web (DAW) con enfoque en frontend y diseño de interfaces dinámicas. Actualmente cursando el Máster en Inteligencia Artificial y Big Data. Busco combinar desarrollo web, UX/UI e IA para crear soluciones optimizadas y funcionales.',
+        facts: ['Enfoque Frontend y UX/UI', 'Máster en IA & Big Data', 'Desarrollo de Plugins (WP)', 'Resolución de problemas'],
+        links: [
+            { label: 'GitHub', url: 'https://github.com/juanccstro', type: 'primary' },
+            { label: 'LinkedIn', url: 'https://www.linkedin.com/in/juanc-castro/', type: 'secondary' },
+            { label: 'Portfolio Secundario', url: 'https://portfolio-juanccastro.zeabur.app', type: 'secondary' }
+        ]
+    },
 
-	projects: [
-		{
-			name: 'NovaDash',
-			desc: 'Real-time analytics dashboard with WebSocket streaming, D3 charts, and drag-and-drop layout builder.',
-			tech: ['React', 'Node.js', 'WebSocket', 'D3']
-		},
-		{
-			name: 'ArcAPI',
-			desc: 'Type-safe REST & GraphQL gateway with auto-generated docs, rate-limiting, and OAuth2.',
-			tech: ['TypeScript', 'GraphQL', 'PostgreSQL', 'Redis']
-		},
-		{
-			name: 'ShiftCMS',
-			desc: 'Headless CMS with live preview, multi-locale support, and a visual block editor.',
-			tech: ['Next.js', 'Prisma', 'tRPC', 'S3']
-		},
-		{
-			name: 'LumaUI',
-			desc: 'Accessible component library (WCAG 2.1 AA) with zero-runtime CSS and Storybook docs.',
-			tech: ['React', 'Radix UI', 'Vanilla Extract']
-		}
-	],
+    projects: [
+        {
+            name: 'CourtConnect',
+            desc: 'Plataforma web orientada a la conexión y gestión de eventos deportivos de baloncesto. Desarrollada durante mi formación como técnico superior de DAW.',
+            tech: ['PHP', 'Docker', 'JavaScript', 'CSS'], 
+            url: 'https://github.com/juanccstro/courtconnect'
+        },
+        {
+            name: 'PHP Marvel',
+            desc: 'Aplicación web sencilla que consume la API oficial de Marvel para mostrar información interactiva sobre la próxima película que se estrena en cines.',
+            tech: ['PHP', 'HTML', 'CSS', 'REST API'],
+            url: 'https://github.com/juanccstro/php-marvel'
+        },
+    ],
 
-	skills: {
-		frontend: ['React / Next.js', 'TypeScript', 'Three.js / WebGL', 'Tailwind CSS', 'Framer Motion', 'Vite'],
-		backend: ['Node.js / Bun', 'PostgreSQL', 'Redis', 'GraphQL', 'Prisma', 'Docker'],
-		tools: ['Git / GitHub', 'Figma', 'Vercel / AWS', 'Playwright', 'Storybook', 'CI/CD']
-	},
+    skills: {
+    frontend: ["HTML5", "CSS3", "JavaScript", "Bootstrap"],
+    backend:  ["PHP", "MySQL", "APIs REST (base)", "Python"],
+    tools:    ["Git & GitHub", "WordPress", "Docker", "PhpStorm"],
+  	},
 
-	contact: {
-		email: 'alex@example.dev',
-		github: 'github.com/alexmorgan',
-		linkedin: 'linkedin.com/in/alexmorgan',
-		twitter: '@alexmorgan_dev',
-		location: 'San Francisco, CA',
-		available: true
-	}
+    contact: {
+        email: 'castro.pazo.jc@gmail.com',
+        github: 'github.com/juanccstro',
+        linkedin: 'linkedin.com/in/juanc-castro',
+        location: 'Vigo, Pontevedra, España',
+        available: true
+    }
 };

@@ -1,85 +1,77 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>3D Portfolio Room</title>
+  <title> Juan C. Castro | Portfolio 3D</title>
+  <link rel="shortcut icon" href="src/lib/assets/favicon.png" type="image/x-icon">
   <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
 
-  <!-- Mobile notice -->
   <div id="mobile-msg">
-    <h2>Best on desktop</h2>
-    <p>This 3D experience is optimised for a larger screen.<br>You can still continue on mobile.</p>
-    <button class="continue-btn" onclick="document.getElementById('mobile-msg').style.display='none'">Continue
-      anyway</button>
+    <h2>Mejor en ordenador</h2>
+    <p>Esta experiencia 3D está optimizada para pantallas más grandes.<br>Aún así, puedes entrar en el móvil.</p>
+    <button class="continue-btn" onclick="document.getElementById('mobile-msg').style.display='none'">Entrar de todos modos</button>
   </div>
 
-  <!-- Loading screen -->
   <div id="loading-screen">
-    <div class="loader-title">Portfolio Room</div>
+    <div class="loader-title">Habitación Portfolio</div>
     <div class="loader-bar-wrap">
       <div class="loader-bar" id="loader-bar"></div>
     </div>
-    <div class="loader-hint" id="loader-hint">Initialising scene…</div>
+    <div class="loader-hint" id="loader-hint">Iniciando escena…</div>
   </div>
 
-  <!-- Three.js canvas -->
   <canvas id="canvas"></canvas>
 
-  <!-- World-space floating labels container -->
   <div id="labels"></div>
 
-  <!-- Interaction hint -->
-  <div id="hint">Click an object to explore · Drag to orbit · Scroll to zoom</div>
+  <div id="hint">Haz clic en un objeto para explorar · Arrastra para desplazarse · Haz scroll para hacer zoom</div>
 
-  <!-- Side nav dots -->
   <div id="nav-dots">
-    <div class="nav-dot" data-key="laptop" data-label="Projects"></div>
-    <div class="nav-dot" data-key="bookshelf" data-label="Skills"></div>
-    <div class="nav-dot" data-key="frame" data-label="About Me"></div>
-    <div class="nav-dot" data-key="character" data-label="Contact"></div>
+    <div class="nav-dot" data-key="laptop" data-label="Proyectos"></div>
+    <div class="nav-dot" data-key="bookshelf" data-label="Habilidades"></div>
+    <div class="nav-dot" data-key="frame" data-label="Sobre mí"></div>
+    <div class="nav-dot" data-key="character" data-label="Contacto"></div>
   </div>
 
-  <!-- Help button -->
-  <button id="help-btn" aria-label="Instructions">?</button>
+  <button id="help-btn" aria-label="Instrucciones">?</button>
 
-  <!-- Help / instruction modal -->
-  <div id="help-modal" role="dialog" aria-label="Controls & Instructions">
+  <div id="help-modal" role="dialog" aria-label="Controles e Instrucciones">
 
-    <div class="help-title">Controls &amp; Guide</div>
+    <div class="help-title">Controles y Guía</div>
 
     <div class="help-section">
-      <div class="help-section-label">Navigate</div>
+      <div class="help-section-label">Navegación</div>
       <div class="help-row">
         <div class="help-icon">🖱️</div>
         <div class="help-row-text">
-          <span class="help-key">Drag</span>
-          <span class="help-val">Orbit / rotate the room</span>
+          <span class="help-key">Arrastrar</span>
+          <span class="help-val">Desplazarse / rotar la habitación</span>
         </div>
       </div>
       <div class="help-row">
         <div class="help-icon">⚙️</div>
         <div class="help-row-text">
           <span class="help-key">Scroll</span>
-          <span class="help-val">Zoom in &amp; out</span>
+          <span class="help-val">Acercar y alejar</span>
         </div>
       </div>
       <div class="help-row">
         <div class="help-icon">👆</div>
         <div class="help-row-text">
-          <span class="help-key">Click object</span>
-          <span class="help-val">Fly to it and open detail panel</span>
+          <span class="help-key">Clic en objeto</span>
+          <span class="help-val">Acercarse y abrir panel de detalles</span>
         </div>
       </div>
       <div class="help-row">
         <div class="help-icon">⎋</div>
         <div class="help-row-text">
           <span class="help-key">Esc</span>
-          <span class="help-val">Close panel and reset view</span>
+          <span class="help-val">Cerrar panel y reiniciar vista</span>
         </div>
       </div>
     </div>
@@ -87,40 +79,40 @@
     <div class="help-divider"></div>
 
     <div class="help-section">
-      <div class="help-section-label">Interactive Objects</div>
+      <div class="help-section-label">Objetos Interactivos</div>
       <div class="help-row">
         <div class="help-icon">💻</div>
         <div class="help-row-text">
-          <span class="help-key">Laptop</span>
-          <span class="help-val">Projects &amp; work</span>
+          <span class="help-key">Portátil</span>
+          <span class="help-val">Proyectos y trabajo</span>
         </div>
       </div>
       <div class="help-row">
         <div class="help-icon">📚</div>
         <div class="help-row-text">
-          <span class="help-key">Bookshelf</span>
-          <span class="help-val">Skills &amp; technologies</span>
+          <span class="help-key">Estantería</span>
+          <span class="help-val">Habilidades y tecnologías</span>
         </div>
       </div>
       <div class="help-row">
         <div class="help-icon">🖼️</div>
         <div class="help-row-text">
-          <span class="help-key">Wall Frame</span>
-          <span class="help-val">About me — painting shifts day/night in real time</span>
+          <span class="help-key">Cuadro</span>
+          <span class="help-val">Sobre mí — el cuadro cambia de día/noche en tiempo real</span>
         </div>
       </div>
       <div class="help-row">
         <div class="help-icon">👨‍💻</div>
         <div class="help-row-text">
-          <span class="help-key">Developer</span>
-          <span class="help-val">Contact info</span>
+          <span class="help-key">Desarrollador</span>
+          <span class="help-val">Información de contacto</span>
         </div>
       </div>
       <div class="help-row">
         <div class="help-icon">💡</div>
         <div class="help-row-text">
-          <span class="help-key">Desk Lamp</span>
-          <span class="help-val">Click to toggle the lamp on / off</span>
+          <span class="help-key">Lámpara</span>
+          <span class="help-val">Haz clic para encender o apagar la lámpara</span>
         </div>
       </div>
     </div>
@@ -128,12 +120,12 @@
     <div class="help-divider"></div>
 
     <div class="help-section">
-      <div class="help-section-label">Quick Nav</div>
+      <div class="help-section-label">Navegación Rápida</div>
       <div class="help-row">
         <div class="help-icon">⚫</div>
         <div class="help-row-text">
-          <span class="help-key">Left-side dots</span>
-          <span class="help-val">Jump directly to any object</span>
+          <span class="help-key">Puntos laterales</span>
+          <span class="help-val">Ir directamente a cualquier objeto</span>
         </div>
       </div>
     </div>
@@ -141,15 +133,13 @@
     <div class="help-divider"></div>
 
     <div class="help-tip">
-      Room lighting and the painting change with the real time of day. The developer goes to bed at 11 PM and returns to
-      the desk at 7 AM. Click the desk lamp to toggle it on or off.
+      La iluminación de la habitación y el cuadro cambian con la hora real del día. El desarrollador se va a dormir a las 11 PM y vuelve al escritorio a las 8 AM. Haz clic en la lámpara para encenderla o apagarla.
     </div>
 
   </div>
 
-  <!-- Detail panel -->
   <div id="panel">
-    <button class="panel-close" id="panel-close" aria-label="Close">✕</button>
+    <button class="panel-close" id="panel-close" aria-label="Cerrar">✕</button>
     <div id="panel-content"></div>
   </div>
 
@@ -211,7 +201,7 @@
     camera.position.set(0, 7, 14);
     camera.lookAt(DEFAULT_CAM_TARGET);
 
-    setProgress(15, 'Setting up lights…');
+    setProgress(15, 'Configurando luces…');
 
     /* ═══════════════════════════════════════════════════════════
        ORBIT CONTROLS
@@ -281,7 +271,7 @@
     charLight.position.set(2, 4, -1.5);
     scene.add(charLight);
 
-    setProgress(28, 'Building room…');
+    setProgress(28, 'Construyendo la habitación…');
 
     /* ═══════════════════════════════════════════════════════════
        MATERIAL HELPERS
@@ -511,7 +501,7 @@
     rugPattern.position.set(0, 0.004, -3.2);
     scene.add(rugPattern);
 
-    setProgress(42, 'Placing furniture…');
+    setProgress(42, 'Colocando muebles…');
 
     /* ═══════════════════════════════════════════════════════════
        DESK  (more detail)
@@ -1625,7 +1615,7 @@
       });
     }
 
-    setProgress(60, 'Hanging clock…');
+    setProgress(60, 'Colgando el reloj…');
 
     /* ═══════════════════════════════════════════════════════════
        WALL CLOCK  (fixed pivot)
@@ -1710,8 +1700,8 @@
     // ── Simulation time ────────────────────────────────────────
     // Override from the browser console:
     //   window.simTime = new Date(2024,0,1, 23,0,0)  → jump to 11 PM
-    //   window.simTime = null                         → back to real time
-    //   window.setSimHour(7)                          → shorthand
+    //   window.simTime = null                        → back to real time
+    //   window.setSimHour(7)                         → shorthand
     window.simTime = null;
     window.setSimHour = (h, m = 0) => {
       window.simTime = new Date(2024, 0, 1, h, m, 0);
@@ -1907,7 +1897,7 @@
       wfBldMats.forEach(m => m.color.lerpColors(nightBld, dayBld, dayT));
     }
 
-    setProgress(74, 'Adding atmosphere…');
+    setProgress(74, 'Añadiendo atmósfera…');
 
     /* ═══════════════════════════════════════════════════════════
        FLOATING PARTICLES
@@ -1981,7 +1971,7 @@
       }
     });
 
-    setProgress(86, 'Wiring interactions…');
+    setProgress(86, 'Configurando interacciones…');
 
     /* ═══════════════════════════════════════════════════════════
        FLOATING HTML LABELS (projected from 3-D world space)
@@ -1989,11 +1979,11 @@
     const labelsContainer = document.getElementById('labels');
 
     const labelDefs = [
-      { key: 'laptop', mesh: laptopGroup, icon: '💻', text: 'Projects', worldOffset: new THREE.Vector3(0, 0.7, 0) },
-      { key: 'bookshelf', mesh: bookshelfGroup, icon: '📚', text: 'Skills', worldOffset: new THREE.Vector3(0, 2.3, 0) },
-      { key: 'frame', mesh: wallFrameGroup, icon: '🖼️', text: 'About Me', worldOffset: new THREE.Vector3(0, 1.0, 0) },
+      { key: 'laptop', mesh: laptopGroup, icon: '💻', text: 'Proyectos', worldOffset: new THREE.Vector3(0, 0.7, 0) },
+      { key: 'bookshelf', mesh: bookshelfGroup, icon: '📚', text: 'Habilidades', worldOffset: new THREE.Vector3(0, 2.3, 0) },
+      { key: 'frame', mesh: wallFrameGroup, icon: '🖼️', text: 'Sobre mí', worldOffset: new THREE.Vector3(0, 1.0, 0) },
       {
-        key: 'character', mesh: characterGroup, icon: '🛏️', text: 'Contact', worldOffset: new THREE.Vector3(0, 2.0, 0),
+        key: 'character', mesh: characterGroup, icon: '🛏️', text: 'Contacto', worldOffset: new THREE.Vector3(0, 2.0, 0),
         getMesh() { return charState === 'sleeping' ? bedBodyLump : characterGroup; }
       },
     ];
@@ -2058,22 +2048,22 @@
        ═══════════════════════════════════════════════════════════ */
     const interactiveObjects = [
       {
-        mesh: laptopGroup, key: 'laptop', label: 'Projects',
+        mesh: laptopGroup, key: 'laptop', label: 'Proyectos',
         camPos: new THREE.Vector3(-0.1, 2.1, -4.5),
         camTarget: new THREE.Vector3(-0.3, 1.2, -6.5)
       },
       {
-        mesh: bookshelfGroup, key: 'bookshelf', label: 'Skills',
+        mesh: bookshelfGroup, key: 'bookshelf', label: 'Habilidades',
         camPos: new THREE.Vector3(1.6, 2.4, -5.5),
         camTarget: new THREE.Vector3(3.5, 2.0, -7.2)
       },
       {
-        mesh: wallFrameGroup, key: 'frame', label: 'About Me',
+        mesh: wallFrameGroup, key: 'frame', label: 'Sobre mí',
         camPos: new THREE.Vector3(-1.7, 4.0, -6.5),
         camTarget: new THREE.Vector3(-1.8, 4.0, -8.5)
       },
       {
-        mesh: characterGroup, key: 'character', label: 'Contact',
+        mesh: characterGroup, key: 'character', label: 'Contacto',
         camPos: new THREE.Vector3(-1.8, 2.0, -4.2),
         camTarget: new THREE.Vector3(-3.5, 0.6, -7.0)
       },
@@ -2211,18 +2201,18 @@
 
     function buildProjectsHTML() {
       return `
-    <div class="panel-category">💻 Interactive Object · Laptop</div>
-    <div class="panel-title">Projects</div>
+    <div class="panel-category">💻 Objeto Interactivo · Portátil</div>
+    <div class="panel-title">Proyectos</div>
     <div class="panel-divider"></div>
-    <div class="panel-desc">Shipped products ranging from real-time dashboards to accessible design systems.</div>
+    <div class="panel-desc">Proyectos desarrollados, abarcando plataformas web, consumo de APIs y diseño de interfaces.</div>
     ${portfolioData.projects.map(p => `
       <div class="project-card">
         <h4>${p.name}</h4><p>${p.desc}</p>
         <div class="tags tech">${p.tech.map(t => `<span class="tag">${t}</span>`).join('')}</div>
       </div>`).join('')}
     <div class="panel-links">
-      <a class="panel-link primary"    data-url="https://github.com">GitHub ↗</a>
-      <a class="panel-link secondary"  data-url="#">Live demos ↗</a>
+      <a class="panel-link primary"    data-url="https://github.com/juanccstro">GitHub ↗</a>
+      <a class="panel-link secondary"  data-url="https://www.linkedin.com/in/juanc-castro/">LinkedIn ↗</a>
     </div>`;
     }
 
@@ -2231,19 +2221,19 @@
       const grid = (arr, dc) => `<div class="skills-grid">${arr.map(sk => `
     <div class="skill-item"><div class="skill-dot ${dc}"></div>${sk}</div>`).join('')}</div>`;
       return `
-    <div class="panel-category">📚 Interactive Object · Bookshelf</div>
-    <div class="panel-title">Skills</div>
+    <div class="panel-category">📚 Objeto Interactivo · Estantería</div>
+    <div class="panel-title">Habilidades</div>
     <div class="panel-divider"></div>
     <div class="section-header">Frontend</div>${grid(s.frontend, '')}
-    <div class="section-header">Backend &amp; Data</div>${grid(s.backend, 'orange')}
-    <div class="section-header">Tools &amp; Workflow</div>${grid(s.tools, 'green')}
-    <div class="panel-links"><a class="panel-link secondary" data-url="#">View CV ↗</a></div>`;
+    <div class="section-header">Backend y Bases de Datos</div>${grid(s.backend, 'orange')}
+    <div class="section-header">Herramientas y Flujo de Trabajo</div>${grid(s.tools, 'green')}
+    <div class="panel-links"><a class="panel-link secondary" data-url="https://www.linkedin.com/in/juanc-castro/">Ver Perfil de LinkedIn ↗</a></div>`;
     }
 
     function buildAboutHTML() {
       const a = portfolioData.about;
       return `
-    <div class="panel-category">🖼️ Interactive Object · Wall Frame</div>
+    <div class="panel-category">🖼️ Objeto Interactivo · Cuadro</div>
     <div class="panel-title">${a.name}</div>
     <div class="panel-desc" style="color:var(--accent);font-size:.82rem;margin-top:-.4rem;margin-bottom:.8rem">${a.role}</div>
     <div class="panel-divider"></div>
@@ -2255,17 +2245,16 @@
     function buildContactHTML() {
       const c = portfolioData.contact;
       return `
-    <div class="panel-category">👨‍💻 Interactive Object · Developer</div>
-    <div class="panel-title">Contact</div>
+    <div class="panel-category">👨‍💻 Objeto Interactivo · Desarrollador</div>
+    <div class="panel-title">Contacto</div>
     <div class="panel-divider"></div>
     ${c.available ? `<div class="tag" style="display:inline-flex;align-items:center;gap:.4rem;margin-bottom:1rem">
       <span style="width:7px;height:7px;border-radius:50%;background:#5af778;display:inline-block;box-shadow:0 0 6px #5af778"></span>
-      Available for work</div>`: ''}
+      Disponible para trabajar</div>`: ''}
     ${[['✉️', 'Email', c.email, `mailto:${c.email}`],
         ['🐙', 'GitHub', c.github, `https://${c.github}`],
         ['💼', 'LinkedIn', c.linkedin, `https://${c.linkedin}`],
-        ['🐦', 'Twitter', c.twitter, null],
-        ['📍', 'Location', c.location, null]
+        ['📍', 'Ubicación', c.location, null]
         ].map(([icon, label, val, href]) => `
       <div class="contact-item">
         <div class="contact-icon">${icon}</div>
@@ -2274,7 +2263,7 @@
         </div>
       </div>`).join('')}
     <div class="panel-links">
-      <a class="panel-link primary"   href="mailto:${c.email}">Send email ↗</a>
+      <a class="panel-link primary"   href="mailto:${c.email}">Enviar email ↗</a>
       <a class="panel-link secondary" data-url="https://${c.linkedin}">LinkedIn ↗</a>
     </div>`;
     }
@@ -2294,7 +2283,7 @@
       })
     );
 
-    /* ═══════════��═══════════════════════════════════════════════
+    /* ═══════════════════════════════════════════════════════════
        FOCUS OBJECT
        ═══════════════════════════════════════════════════════════ */
     function focusObject(obj) {
@@ -2446,7 +2435,7 @@
 
     // Update hint text for touch devices
     if ('ontouchstart' in window) {
-      document.getElementById('hint').textContent = 'Tap an object · Drag to orbit · Pinch to zoom';
+      document.getElementById('hint').textContent = 'Toca un objeto para explorar · Arrastra para desplazarte · Pellizca para hacer zoom';
     }
 
     /* ═══════════════════════════════════════════════════════════
@@ -2497,7 +2486,7 @@
        INTRO FLY-IN
        ═══════════════════════════════════════════════════════════ */
     function startIntro() {
-      setProgress(100, 'Ready!');
+      setProgress(100, '¡Listo!');
       setTimeout(() => {
         // Pre-load all visual states before revealing the scene
         updateLampVisuals();
