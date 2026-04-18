@@ -14,7 +14,7 @@
 		jobTitle: resume.about.role,
 		description: resume.about.bio,
 		email: `mailto:${resume.contact.email}`,
-		url: 'https://tu-portfolio.vercel.app', // CAMBIA ESTO POR TU URL DE VERCEL
+		url: 'https://portfolio-3d-delta-coral.vercel.app', // CAMBIA ESTO POR TU URL DE VERCEL
 		sameAs: [
 			`https://${resume.contact.github}`,
 			`https://${resume.contact.linkedin}`
@@ -36,13 +36,13 @@
 		name: `${resume.about.name} — Portfolio 3D Interactivo`,
 		description: `Un portfolio interactivo en 3D construido con Three.js y SvelteKit, mostrando las habilidades de ${resume.about.role}.`,
 		author: { '@type': 'Person', name: resume.about.name },
-		url: 'https://tu-portfolio.vercel.app', // CAMBIA ESTO POR TU URL DE VERCEL
+		url: 'https://portfolio-3d-delta-coral.vercel.app', // CAMBIA ESTO POR TU URL DE VERCEL
 		keywords: 'portfolio desarrollador frontend, desarrollador Three.js, portfolio SvelteKit, currículum interactivo, portfolio WebGL',
 		inLanguage: 'es'
 	});
 
 	// 🔥 ¡IMPORTANTE! Cambia esto por tu dominio real de Vercel
-	const SITE_URL = 'https://tu-portfolio.vercel.app'; 
+	const SITE_URL = 'https://portfolio-3d-delta-coral.vercel.appp'; 
 	const OG_IMAGE = `${SITE_URL}/og-image.png`;
 </script>
 
