@@ -47,9 +47,6 @@
 </script>
 
 <svelte:head>
-	<!-- ── Favicon ─────────────────────────────────────────────────────────── -->
-	<link rel="icon" href={favicon} />
-
 	<!-- ── Primary SEO ────────────────────────────────────────────────────── -->
 	<title>{resume.about.name} — {resume.about.role} | Interactive 3D Portfolio</title>
 	<meta name="description" content="Portfolio of {resume.about.name}, a {resume.about.role} based in {resume.contact.location}. {resume.about.bio}" />
