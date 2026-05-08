@@ -61,20 +61,26 @@ export const resume: ResumeData = {
         ]
     },
 
-    projects: [
-        {
-            name: 'CourtConnect',
-            desc: 'Plataforma web orientada a la conexión y gestión de eventos deportivos de baloncesto. Desarrollada durante mi formación como técnico superior de DAW.',
-            tech: ['PHP', 'Docker', 'JavaScript', 'CSS'], 
-            url: 'https://github.com/juanccstro/courtconnect'
-        },
-        {
-            name: 'PHP Marvel',
-            desc: 'Aplicación web sencilla que consume la API oficial de Marvel para mostrar información interactiva sobre la próxima película que se estrena en cines.',
-            tech: ['PHP', 'HTML', 'CSS', 'REST API'],
-            url: 'https://github.com/juanccstro/php-marvel'
-        },
-    ],
+   projects: [
+    {
+        name: 'CourtConnect',
+        desc: 'Plataforma web orientada a la conexión y gestión de eventos deportivos de baloncesto. Desarrollada durante mi formación como técnico superior de DAW.',
+        tech: ['PHP', 'Docker', 'JavaScript', 'CSS'], 
+        url: 'https://github.com/juanccstro/courtconnect'
+    },
+    {
+        name: 'PHP Marvel',
+        desc: 'Aplicación web sencilla que consume la API oficial de Marvel para mostrar información interactiva sobre la próxima película que se estrena en cines.',
+        tech: ['PHP', 'HTML', 'CSS', 'REST API'],
+        url: 'https://github.com/juanccstro/php-marvel'
+    },
+    {
+        name: 'CF Guillarei',
+        desc: 'Página web dinámica del CF Guillarei. Incluye información promocional sobre el club y un catálogo de sus productos.',
+        tech: ['HTML', 'CSS', 'JavaScript'], 
+        url: 'https://web-guillarei.vercel.app/'
+    }
+],
 
     skills: {
     frontend: ["HTML5", "CSS3", "JavaScript", "Bootstrap"],
