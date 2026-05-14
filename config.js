@@ -26,7 +26,7 @@ window.portfolioData = {
     },
     {
         name: 'CF Guillarei',
-        desc: 'Página promocional del club deportivo CF Guillarei. Incluye información sobre el club y un catálogo de sus productos.',
+        desc: 'Página web dinámica del CF Guillarei. Incluye información promocional sobre el club y un catálogo de sus productos.',
         tech: ['HTML', 'CSS', 'JavaScript'], 
         url: 'https://web-guillarei.vercel.app/'
     }
