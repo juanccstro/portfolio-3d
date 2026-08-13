@@ -46,8 +46,8 @@ export function flyTo(
 		x: target.pos.x,
 		y: target.pos.y,
 		z: target.pos.z,
-		duration: 1.2,
-		ease: 'power2.inOut',
+		duration: 1.45,
+		ease: 'power3.inOut',
 		onUpdate() {
 			camera.lookAt(target.target);
 			controls.target.copy(target.target);
@@ -65,8 +65,8 @@ export function resetCamera(
 		x: DEFAULT_CAM_POS.x,
 		y: DEFAULT_CAM_POS.y,
 		z: DEFAULT_CAM_POS.z,
-		duration: 1.0,
-		ease: 'power2.inOut',
+		duration: 1.15,
+		ease: 'power3.inOut',
 		onUpdate() {
 			camera.lookAt(DEFAULT_CAM_TARGET);
 			controls.target.copy(DEFAULT_CAM_TARGET);
@@ -87,8 +87,8 @@ export function introFlyIn(
 		x: DEFAULT_CAM_POS.x,
 		y: DEFAULT_CAM_POS.y,
 		z: DEFAULT_CAM_POS.z,
-		duration: 2.2,
-		ease: 'power3.inOut',
+		duration: 2.8,
+		ease: 'power4.inOut',
 		onUpdate() {
 			camera.lookAt(DEFAULT_CAM_TARGET);
 		},

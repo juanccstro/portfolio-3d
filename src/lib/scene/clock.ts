@@ -16,11 +16,11 @@ let _overrideMinute: number | null = null;
 /** Compute dayT (0–1) from a given hour/minute. Matches original curve. */
 function computeDayT(hour: number, minute: number): number {
 	const totalH = hour + minute / 60;
-	// Dawn 6–8, dusk 18–20
+	// Dawn 6–8, golden hour 17–21
 	if (totalH < 6) return 0;
 	if (totalH < 8) return (totalH - 6) / 2;
-	if (totalH < 18) return 1;
-	if (totalH < 20) return 1 - (totalH - 18) / 2;
+	if (totalH < 17) return 1;
+	if (totalH < 21) return 1 - (totalH - 17) / 4;
 	return 0;
 }
 

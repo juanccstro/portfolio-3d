@@ -6,15 +6,15 @@ import * as THREE from 'three';
 export type LabelConfig = {
 	key: string;
 	position: THREE.Vector3;
-	emoji: string;
 	text: string;
+	meta?: string;
 };
 
 export const LABEL_CONFIGS: LabelConfig[] = [
-	{ key: 'laptop',     position: new THREE.Vector3(-0.3, 2.0, -6.5),  emoji: '💻', text: 'Projects' },
-	{ key: 'bookshelf',  position: new THREE.Vector3(4.5,  2.5, -7.0),  emoji: '📚', text: 'Skills'   },
-	{ key: 'frame',      position: new THREE.Vector3(-4.0, 3.8, -5.8),  emoji: '🖼️', text: 'About Me' },
-	{ key: 'character',  position: new THREE.Vector3(-3.5, 2.8, -7.0),  emoji: '👨‍💻', text: 'Contact'  }
+	{ key: 'laptop',    position: new THREE.Vector3(-0.3, 2.0, -6.5), text: 'Proyectos',  meta: 'PORTFOLIO Y TRABAJOS' },
+	{ key: 'bookshelf', position: new THREE.Vector3(4.5, 2.5, -7.0), text: 'Habilidades', meta: 'TECNOLOGÍAS' },
+	{ key: 'frame',     position: new THREE.Vector3(-4.0, 3.8, -5.8), text: 'Sobre mí', meta: 'PERFIL' },
+	{ key: 'character', position: new THREE.Vector3(-3.5, 2.8, -7.0), text: 'Contacto',  meta: 'PONTE EN CONTACTO' }
 ];
 
 export function createLabelElements(container: HTMLElement): Map<string, HTMLElement> {
@@ -23,7 +23,7 @@ export function createLabelElements(container: HTMLElement): Map<string, HTMLEle
 		const el = document.createElement('div');
 		el.className = 'scene-label';
 		el.dataset.key = cfg.key;
-		el.innerHTML = `<span class="label-emoji">${cfg.emoji}</span><span class="label-text">${cfg.text}</span>`;
+		el.innerHTML = `<span class="label-copy"><span class="label-text">${cfg.text}</span>${cfg.meta ? `<span class="label-meta">${cfg.meta}</span>` : ''}</span>`;
 		container.appendChild(el);
 		map.set(cfg.key, el);
 	}

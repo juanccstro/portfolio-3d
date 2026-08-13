@@ -18,11 +18,11 @@
   </div>
 
   <div id="loading-screen">
-    <div class="loader-title">Habitación Portfolio</div>
+    <div class="loader-title">Portfolio · Juan Castro</div>
     <div class="loader-bar-wrap">
       <div class="loader-bar" id="loader-bar"></div>
     </div>
-    <div class="loader-hint" id="loader-hint">Iniciando escena…</div>
+    <div class="loader-hint" id="loader-hint">Iniciando experiencia...</div>
   </div>
 
   <canvas id="canvas"></canvas>
@@ -624,7 +624,7 @@
     }
 
     /* ═══════════════════════════════════════════════════════════
-       LAPTOP  →  Projects  (more detail)
+       PORTÁTIL  →  PROYECTOS  (more detail)
        ═══════════════════════════════════════════════════════════ */
     const laptopGroup = new THREE.Group();
     const laptopScreenMats = []; // collected during build; toggled by updateRoomLighting
@@ -712,7 +712,7 @@
     scene.add(laptopGroup);
 
     /* ═══════════════════════════════════════════════════════════
-       BOOKSHELF  →  Skills  (more detail + better placement)
+       ESTANTERÍA  →  HABILIDADES  (more detail + better placement)
        ═══════════════════════════════════════════════════════════ */
     const bookshelfGroup = new THREE.Group();
     {
@@ -841,7 +841,7 @@
     scene.add(bookshelfGroup);
 
     /* ═══════════════════════════════════════════════════════════
-       WALL FRAME  →  About Me  (more detail)
+       CUADRO  →  SOBRE MÍ  (more detail)
        ═══════════════════════════════════════════════════════════ */
     const wallFrameGroup = new THREE.Group();
     // Dynamic day/night references
@@ -946,7 +946,7 @@
     scene.add(wallFrameGroup);
 
     /* ═══════════════════════════════════════════════════════════
-       DEVELOPER CHARACTER  →  Contact  (more detail)
+       DESARROLLADOR  →  CONTACTO  (more detail)
        ═══════════════════════════════════════════════════════════ */
     // Chair stays at desk permanently — separate from the person
     const chairGroup = new THREE.Group();
@@ -1979,11 +1979,11 @@
     const labelsContainer = document.getElementById('labels');
 
     const labelDefs = [
-      { key: 'laptop', mesh: laptopGroup, icon: '💻', text: 'Proyectos', worldOffset: new THREE.Vector3(0, 0.7, 0) },
-      { key: 'bookshelf', mesh: bookshelfGroup, icon: '📚', text: 'Habilidades', worldOffset: new THREE.Vector3(0, 2.3, 0) },
-      { key: 'frame', mesh: wallFrameGroup, icon: '🖼️', text: 'Sobre mí', worldOffset: new THREE.Vector3(0, 1.0, 0) },
+      { key: 'laptop', mesh: laptopGroup, text: 'PROYECTOS', worldOffset: new THREE.Vector3(0, 0.7, 0) },
+      { key: 'bookshelf', mesh: bookshelfGroup, text: 'HABILIDADES', worldOffset: new THREE.Vector3(0, 2.3, 0) },
+      { key: 'frame', mesh: wallFrameGroup, text: 'SOBRE MÍ', worldOffset: new THREE.Vector3(0, 1.0, 0) },
       {
-        key: 'character', mesh: characterGroup, icon: '🛏️', text: 'Contacto', worldOffset: new THREE.Vector3(0, 2.0, 0),
+        key: 'character', mesh: characterGroup, text: 'CONTACTO', worldOffset: new THREE.Vector3(0, 2.0, 0),
         getMesh() { return charState === 'sleeping' ? bedBodyLump : characterGroup; }
       },
     ];
@@ -1994,7 +1994,6 @@
       const div = document.createElement('div');
       div.className = 'obj-label';
       div.innerHTML = `
-    <div class="obj-label-icon">${def.icon}</div>
     <div class="obj-label-bubble">${def.text}</div>
     <div class="obj-label-line"></div>
   `;
@@ -2201,7 +2200,7 @@
 
     function buildProjectsHTML() {
       return `
-    <div class="panel-category">💻 Objeto Interactivo · Portátil</div>
+    <div class="panel-category">OBJETO INTERACTIVO · PORTÁTIL</div>
     <div class="panel-title">Proyectos</div>
     <div class="panel-divider"></div>
     <div class="panel-desc">Proyectos desarrollados, abarcando plataformas web, consumo de APIs y diseño de interfaces.</div>
@@ -2211,8 +2210,8 @@
         <div class="tags tech">${p.tech.map(t => `<span class="tag">${t}</span>`).join('')}</div>
       </div>`).join('')}
     <div class="panel-links">
-      <a class="panel-link primary"    data-url="https://github.com/juanccstro">GitHub ↗</a>
-      <a class="panel-link secondary"  data-url="https://www.linkedin.com/in/juanc-castro/">LinkedIn ↗</a>
+      <a class="panel-link primary"    data-url="https://github.com/juanccstro">🔗 GitHub ↗</a>
+      <a class="panel-link secondary"  data-url="https://www.linkedin.com/in/juanc-castro/">💼 LinkedIn ↗</a>
     </div>`;
     }
 
@@ -2221,13 +2220,13 @@
       const grid = (arr, dc) => `<div class="skills-grid">${arr.map(sk => `
     <div class="skill-item"><div class="skill-dot ${dc}"></div>${sk}</div>`).join('')}</div>`;
       return `
-    <div class="panel-category">📚 Objeto Interactivo · Estantería</div>
+    <div class="panel-category">OBJETO INTERACTIVO · ESTANTERÍA</div>
     <div class="panel-title">Habilidades</div>
     <div class="panel-divider"></div>
     <div class="section-header">Frontend</div>${grid(s.frontend, '')}
     <div class="section-header">Backend y Bases de Datos</div>${grid(s.backend, 'orange')}
     <div class="section-header">Herramientas y Flujo de Trabajo</div>${grid(s.tools, 'green')}
-    <div class="panel-links"><a class="panel-link secondary" data-url="https://www.linkedin.com/in/juanc-castro/">Ver Perfil de LinkedIn ↗</a></div>`;
+    <div class="panel-links"><a class="panel-link secondary" data-url="https://www.linkedin.com/in/juanc-castro/">Ver Perfil de 💼 LinkedIn ↗</a></div>`;
     }
 
     function buildAboutHTML() {
@@ -2249,7 +2248,7 @@
     <div class="panel-title">Contacto</div>
     <div class="panel-divider"></div>
     ${c.available ? `<div class="tag" style="display:inline-flex;align-items:center;gap:.4rem;margin-bottom:1rem">
-      <span style="width:7px;height:7px;border-radius:50%;background:#5af778;display:inline-block;box-shadow:0 0 6px #5af778"></span>
+      <span style="width:7px;height:7px;border-radius:50%;background:#5ee7d0;display:inline-block;box-shadow:0 0 6px #5ee7d0"></span>
       Disponible para trabajar</div>`: ''}
     ${[['✉️', 'Email', c.email, `mailto:${c.email}`],
         ['🐙', 'GitHub', c.github, `https://${c.github}`],

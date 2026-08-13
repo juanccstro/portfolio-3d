@@ -52,6 +52,8 @@ export function onPointerMove(
 	const hits = raycaster.intersectObjects(allMeshes, true);
 	const key = resolveHit(hits);
 	canvas.style.cursor = key ? 'pointer' : 'grab';
+	// Expose the hovered object to CSS/UI without coupling this module to Svelte.
+	canvas.dataset.hoveredObject = key ?? '';
 }
 
 export function onPointerClick(

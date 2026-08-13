@@ -15,7 +15,7 @@
 </svelte:head>
 
 <div class="page">
-	<a href="/" class="back-link">← Volver al Portfolio 3D</a>
+	<a href="/" class="back-link">← Volver al Portfolio</a>
 
 	<header>
 		<h1>Proyectos</h1>

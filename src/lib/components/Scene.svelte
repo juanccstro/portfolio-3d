@@ -100,12 +100,12 @@
 		renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 		renderer.outputColorSpace = THREE.SRGBColorSpace;
 		renderer.toneMapping = THREE.ACESFilmicToneMapping;
-		renderer.toneMappingExposure = 2.2;
+		renderer.toneMappingExposure = 1.65;
 
 		/* ── Scene ────────────────────────────────────────────────── */
 		scene = new THREE.Scene();
-		scene.background = new THREE.Color(0x131325);
-		scene.fog = new THREE.FogExp2(0x131325, 0.016);
+		scene.background = new THREE.Color(0x0d0610);
+		scene.fog = new THREE.FogExp2(0x160817, 0.013);
 
 		/* ── Camera ───────────────────────────────────────────────── */
 		camera = new THREE.PerspectiveCamera(isMobile ? 65 : 55, window.innerWidth / window.innerHeight, 0.1, 60);
@@ -126,10 +126,10 @@
 		setProgress(15, 'Setting up lights…');
 
 		/* ── Lights ───────────────────────────────────────────────── */
-		const ambient = new THREE.AmbientLight(0xc8d0ff, 1.4);
+		const ambient = new THREE.AmbientLight(0x6f284f, 0.95);
 		scene.add(ambient); ambientRef = ambient;
 
-		const dirLight = new THREE.DirectionalLight(0xfff8f0, 2.8);
+		const dirLight = new THREE.DirectionalLight(0xff8a6b, 2.1);
 		dirLight.position.set(5, 10, 6);
 		dirLight.castShadow = true;
 		dirLight.shadow.mapSize.set(1024, 1024);
@@ -139,25 +139,25 @@
 		dirLight.shadow.bias = -0.001;
 		scene.add(dirLight); dirLightRef = dirLight;
 
-		const fillLeft = new THREE.PointLight(0x88aaff, 1.5, 14);
+		const fillLeft = new THREE.PointLight(0x5ee7d0, 1.65, 14);
 		fillLeft.position.set(-4, 4.5, -3); scene.add(fillLeft); fillLeftRef = fillLeft;
 
-		const fillRight = new THREE.PointLight(0xffddbb, 1.4, 14);
+		const fillRight = new THREE.PointLight(0xff3f8e, 1.55, 14);
 		fillRight.position.set(4, 4.5, -4); scene.add(fillRight); fillRightRef = fillRight;
 
 		deskGlowBase = 2.2;
-		const deskGlow = new THREE.PointLight(0xffbb66, deskGlowBase, 5);
+		const deskGlow = new THREE.PointLight(0x5ee7d0, deskGlowBase, 5);
 		deskGlow.position.set(-0.3, 3.2, -5.5); scene.add(deskGlow); deskGlowRef = deskGlow;
 
 		lampLightBase = 9.0;
-		const lampLight = new THREE.PointLight(0xffcc77, lampLightBase, 18);
+		const lampLight = new THREE.PointLight(0xff9a6a, lampLightBase, 18);
 		lampLight.castShadow = false;
 		lampLight.position.set(1.2, 2.8, -4.0); scene.add(lampLight); lampLightRef = lampLight;
 
-		const ceilBounce = new THREE.PointLight(0xaabbff, 1.3, 16);
+		const ceilBounce = new THREE.PointLight(0xff4f91, 0.95, 16);
 		ceilBounce.position.set(0, 6.0, -5.0); scene.add(ceilBounce); ceilBounceRef = ceilBounce;
 
-		const charLight = new THREE.PointLight(0xffeedd, 1.3, 7);
+		const charLight = new THREE.PointLight(0xff9a7a, 1.15, 7);
 		charLight.position.set(2, 4, -1.5); scene.add(charLight); charLightRef = charLight;
 
 		setProgress(28, 'Building room…');
@@ -171,17 +171,17 @@
 		   ROOM
 		═══════════════════════════════════════════════════════════ */
 		const ROOM_W = 10, ROOM_D = 9, ROOM_H = 6.5, ROOM_CZ = -4.0;
-		const wallColor = 0x1e1e3a, wallColor2 = 0x1c1c38;
-		const wainscotColor = 0x252545, trimColor = 0x2e2e52;
+		const wallColor = 0x1b0b1d, wallColor2 = 0x160a19;
+		const wainscotColor = 0x240d25, trimColor = 0x42152f;
 
 		// Floor
-		const floorBase = new THREE.Mesh(new THREE.PlaneGeometry(ROOM_W, ROOM_D), new THREE.MeshStandardMaterial({ color: 0x1e1e36, roughness: 0.9 }));
+		const floorBase = new THREE.Mesh(new THREE.PlaneGeometry(ROOM_W, ROOM_D), new THREE.MeshStandardMaterial({ color: 0x120914, roughness: 0.9 }));
 		floorBase.rotation.x = -Math.PI / 2; floorBase.position.set(0, 0, ROOM_CZ); floorBase.receiveShadow = true; scene.add(floorBase);
 		for (let i = 0; i < 12; i++) {
-			const plank = new THREE.Mesh(new THREE.PlaneGeometry(ROOM_W, 0.005), new THREE.MeshStandardMaterial({ color: 0x28284a, roughness: 0.95 }));
+			const plank = new THREE.Mesh(new THREE.PlaneGeometry(ROOM_W, 0.005), new THREE.MeshStandardMaterial({ color: 0x1d0d20, roughness: 0.95 }));
 			plank.rotation.x = -Math.PI / 2; plank.position.set(0, 0.001, ROOM_CZ - ROOM_D / 2 + (i + 1) * (ROOM_D / 13)); scene.add(plank);
 		}
-		const grid = new THREE.GridHelper(ROOM_W, 14, 0x2a2a4a, 0x222240);
+		const grid = new THREE.GridHelper(ROOM_W, 14, 0x5b2147, 0x2a1228);
 		grid.position.set(0, 0.002, ROOM_CZ); scene.add(grid);
 
 		// Back wall
@@ -194,7 +194,7 @@
 		const rightWall = new THREE.Mesh(new THREE.PlaneGeometry(ROOM_D, ROOM_H), mat(wallColor2, { roughness: 0.92 }));
 		rightWall.position.set(5, ROOM_H / 2, ROOM_CZ); rightWall.rotation.y = -Math.PI / 2; rightWall.receiveShadow = true; scene.add(rightWall);
 		// Ceiling
-		const ceil = new THREE.Mesh(new THREE.PlaneGeometry(ROOM_W, ROOM_D), mat(0x14142a));
+		const ceil = new THREE.Mesh(new THREE.PlaneGeometry(ROOM_W, ROOM_D), mat(0x0d0610));
 		ceil.rotation.x = Math.PI / 2; ceil.position.set(0, ROOM_H, ROOM_CZ); scene.add(ceil);
 
 		// Wainscoting
@@ -225,13 +225,13 @@
 		let winLight: THREE.PointLight;
 		{
 			const winX = -4.97, winY = 3.3, winZ = -5.8, winW = 1.4, winH = 1.2;
-			const frameMat = mat(0x2a2a48, { roughness: 0.6 });
+			const frameMat = mat(0x3b1834, { roughness: 0.6 });
 			([[winW + 0.12, 0.08, 0.06, 0, winH / 2 + 0.04, 0], [winW + 0.12, 0.08, 0.06, 0, -winH / 2 - 0.04, 0], [0.08, winH, 0.06, -winW / 2 - 0.04, 0, 0], [0.08, winH, 0.06, winW / 2 + 0.04, 0, 0], [0.04, winH, 0.06, 0, 0, 0], [winW, 0.04, 0.06, 0, 0, 0]] as any[]).forEach(([w, h, d, ox, oy]) => {
 				const bar = new THREE.Mesh(new THREE.BoxGeometry(w, h, d), frameMat);
 				bar.position.set(winX + 0.04, winY + oy, winZ + ox); bar.rotation.y = Math.PI / 2; scene.add(bar);
 			});
 			([[-winW / 4, winH / 4], [winW / 4, winH / 4], [-winW / 4, -winH / 4], [winW / 4, -winH / 4]] as any[]).forEach(([ox, oy]) => {
-				const paneMat = new THREE.MeshStandardMaterial({ color: 0x0a0a20, emissive: 0x0a0a20, emissiveIntensity: 0.3, roughness: 0.4 });
+				const paneMat = new THREE.MeshStandardMaterial({ color: 0x120719, emissive: 0xff3f8e, emissiveIntensity: 0.3, roughness: 0.4 });
 				winPaneMats.push(paneMat);
 				const pane = new THREE.Mesh(new THREE.PlaneGeometry(winW / 2 - 0.06, winH / 2 - 0.06), paneMat);
 				pane.position.set(winX + 0.03, winY + oy, winZ + ox); pane.rotation.y = Math.PI / 2; scene.add(pane);
@@ -308,8 +308,8 @@
 		═══════════════════════════════════════════════════════════ */
 		const laptopGroup = new THREE.Group();
 		{
-			const alum = gloss(0x2c2c36, { roughness: 0.28, metalness: 0.65 });
-			const keyMat = mat(0x1e1e26, { roughness: 0.82 });
+			const alum = gloss(0x25202a, { roughness: 0.28, metalness: 0.65 });
+			const keyMat = mat(0x140f18, { roughness: 0.82 });
 			const base = new THREE.Mesh(new THREE.BoxGeometry(0.95, 0.055, 0.68), alum);
 			base.castShadow = true; laptopGroup.add(base);
 			for (let i = 0; i < 5; i++) {
@@ -320,11 +320,11 @@
 			screen.position.set(0, 0.312, -0.325); screen.rotation.x = -Math.PI * 0.175; screen.castShadow = true; laptopGroup.add(screen);
 			const bezel = new THREE.Mesh(new THREE.BoxGeometry(0.82, 0.50, 0.006), mat(0x0a0a12));
 			bezel.position.set(0, 0.312, -0.31); bezel.rotation.x = -Math.PI * 0.175; laptopGroup.add(bezel);
-			const dispMat = emMat(0x0d1f3c, 0x2244cc, 1.4);
+			const dispMat = emMat(0x170c25, 0xff3f8e, 1.4);
 			(dispMat as any)._baseIntensity = dispMat.emissiveIntensity; laptopScreenMats.push(dispMat);
 			const display = new THREE.Mesh(new THREE.BoxGeometry(0.76, 0.44, 0.004), dispMat);
 			display.position.set(0, 0.312, -0.296); display.rotation.x = -Math.PI * 0.175; laptopGroup.add(display);
-			const codeColors = [0x7c6af7, 0x5af778, 0xf7d96a, 0xf7916a, 0x55ccff, 0x7c6af7, 0x5af778];
+			const codeColors = [0xff4f91, 0x5ee7d0, 0xffb36b, 0xff7a79, 0x63d9ff, 0xff6f9f, 0x64e6cf];
 			codeColors.forEach((col, i) => {
 				const w = 0.12 + Math.random() * 0.25;
 				const lm = emMat(col, col, 1.2); (lm as any)._baseIntensity = lm.emissiveIntensity; laptopScreenMats.push(lm);
@@ -340,9 +340,9 @@
 					key.position.set(-0.37 + col * 0.067, 0.04, -0.08 + row * 0.065); laptopGroup.add(key);
 				}
 			}
-			const logo = new THREE.Mesh(new THREE.CircleGeometry(0.06, 16), emMat(0xaaaacc, 0xffffff, 0.4));
+			const logo = new THREE.Mesh(new THREE.CircleGeometry(0.06, 16), emMat(0xffb6d2, 0xff4f91, 0.65));
 			logo.position.set(0, 0.31, -0.34); logo.rotation.x = Math.PI * 0.825; laptopGroup.add(logo);
-			const led = new THREE.Mesh(new THREE.CircleGeometry(0.008, 8), emMat(0x00ff88, 0x00ff88, 3));
+			const led = new THREE.Mesh(new THREE.CircleGeometry(0.008, 8), emMat(0x5ee7d0, 0x5ee7d0, 3));
 			led.position.set(0.44, 0.032, 0.32); laptopGroup.add(led);
 		}
 		laptopGroup.position.set(-0.3, 1.135, -6.52); laptopGroup.rotation.y = Math.PI * 0.06; laptopGroup.scale.set(0.88, 0.88, 0.88); scene.add(laptopGroup);
@@ -352,7 +352,7 @@
 		═══════════════════════════════════════════════════════════ */
 		const bookshelfGroup = new THREE.Group();
 		{
-			const wood = mat(0x9a7c4a, { roughness: 0.75 }), dark = mat(0x6b5638, { roughness: 0.78 });
+			const wood = mat(0x5a2940, { roughness: 0.75 }), dark = mat(0x321526, { roughness: 0.78 });
 			const makePanel = (w: number, h: number, d: number, x: number, y: number, z: number) => {
 				const m = new THREE.Mesh(new THREE.BoxGeometry(w, h, d), wood);
 				m.position.set(x, y, z); m.castShadow = m.receiveShadow = true; bookshelfGroup.add(m);
@@ -362,7 +362,7 @@
 			makePanel(1.55, 0.08, 0.43, 0, -0.78, 0); makePanel(1.55, 0.08, 0.43, 0, 0.10, 0); makePanel(1.55, 0.08, 0.43, 0, 0.98, 0);
 			const back = new THREE.Mesh(new THREE.BoxGeometry(1.46, 3.1, 0.04), dark);
 			back.position.set(0, 0, -0.20); bookshelfGroup.add(back);
-			const bookPalette = [0xe74c3c, 0x3498db, 0x2ecc71, 0xf39c12, 0x9b59b6, 0xe67e22, 0x1abc9c, 0xd35400, 0x27ae60, 0x8e44ad, 0xc0392b, 0x2980b9, 0xf1c40f, 0x16a085, 0x7f8c8d];
+			const bookPalette = [0xff4f91, 0xff8b70, 0x5ee7d0, 0xffb36b, 0xff6f9f, 0xd95786, 0x64e6cf, 0xff704f, 0xffa06a, 0xc44b7c, 0xff5b8a, 0x3cbfaf, 0xffc06e, 0x58d8c4, 0x9b6172];
 			let bi = 0;
 			for (let row = 0; row < 3; row++) {
 				const baseY = -1.48 + row * 0.88;
@@ -411,26 +411,26 @@
 		═══════════════════════════════════════════════════════════ */
 		const wallFrameGroup = new THREE.Group();
 		{
-			const goldMat = gloss(0xd4a048, { roughness: 0.25, metalness: 0.7 });
+			const goldMat = gloss(0xff9a6a, { roughness: 0.25, metalness: 0.7 });
 			const frameW = 1.6, frameH = 1.15, thick = 0.07, depth = 0.055;
 			([[frameW + thick * 2, thick, depth, 0, frameH / 2 + thick / 2, 0], [frameW + thick * 2, thick, depth, 0, -frameH / 2 - thick / 2, 0], [thick, frameH, depth, -frameW / 2 - thick / 2, 0, 0], [thick, frameH, depth, frameW / 2 + thick / 2, 0, 0]] as any[]).forEach(([w, h, d, x, y]) => {
 				const bar = new THREE.Mesh(new THREE.BoxGeometry(w, h, d), goldMat);
 				bar.position.set(x, y, 0); bar.castShadow = true; wallFrameGroup.add(bar);
 			});
-			const canvas3d = new THREE.Mesh(new THREE.PlaneGeometry(frameW, frameH), new THREE.MeshStandardMaterial({ color: 0x18183a, roughness: 0.92 }));
+			const canvas3d = new THREE.Mesh(new THREE.PlaneGeometry(frameW, frameH), new THREE.MeshStandardMaterial({ color: 0x210c25, roughness: 0.92 }));
 			canvas3d.position.z = 0.015; wallFrameGroup.add(canvas3d);
-			wfSkyMat = new THREE.MeshStandardMaterial({ color: 0x0a0a25, roughness: 0.9 });
+			wfSkyMat = new THREE.MeshStandardMaterial({ color: 0x19081d, roughness: 0.9 });
 			const skyGrad = new THREE.Mesh(new THREE.PlaneGeometry(frameW * 0.95, frameH * 0.95), wfSkyMat);
 			skyGrad.position.z = 0.018; wallFrameGroup.add(skyGrad);
 			const mountainPoints: [number, number][] = [[-0.78, -0.42], [0.78, -0.42], [0.78, -0.1], [0.55, -0.1], [0.4, -0.3], [0.22, -0.06], [0.05, -0.28], [-0.18, -0.02], [-0.38, -0.3], [-0.55, -0.1], [-0.78, -0.1]];
 			const shape = new THREE.Shape();
 			shape.moveTo(...mountainPoints[0]); mountainPoints.slice(1).forEach(p => shape.lineTo(...p)); shape.closePath();
-			wfMtnMat = new THREE.MeshStandardMaterial({ color: 0x1a1a40, roughness: 0.9 });
+			wfMtnMat = new THREE.MeshStandardMaterial({ color: 0x2b102d, roughness: 0.9 });
 			const mtn = new THREE.Mesh(new THREE.ShapeGeometry(shape), wfMtnMat);
 			mtn.position.z = 0.022; wallFrameGroup.add(mtn);
-			wfMoon = new THREE.Mesh(new THREE.CircleGeometry(0.1, 16), new THREE.MeshStandardMaterial({ color: 0xfffde8, emissive: 0xffeeaa, emissiveIntensity: 0.6, transparent: true, opacity: 1 }));
+			wfMoon = new THREE.Mesh(new THREE.CircleGeometry(0.1, 16), new THREE.MeshStandardMaterial({ color: 0xffd7bd, emissive: 0xff8f74, emissiveIntensity: 0.6, transparent: true, opacity: 1 }));
 			wfMoon.position.set(0.4, 0.28, 0.023); wallFrameGroup.add(wfMoon);
-			wfSun = new THREE.Mesh(new THREE.CircleGeometry(0.12, 16), new THREE.MeshStandardMaterial({ color: 0xffee55, emissive: 0xffaa00, emissiveIntensity: 1.4, transparent: true, opacity: 0 }));
+			wfSun = new THREE.Mesh(new THREE.CircleGeometry(0.12, 16), new THREE.MeshStandardMaterial({ color: 0xff7f9a, emissive: 0xff3f8e, emissiveIntensity: 1.4, transparent: true, opacity: 0 }));
 			wfSun.position.set(0.35, 0.28, 0.023); wfSun.visible = false; wallFrameGroup.add(wfSun);
 			for (let i = 0; i < 18; i++) {
 				const starMat = new THREE.MeshStandardMaterial({ color: 0xffffff, emissive: 0xffffff, emissiveIntensity: 0.8, transparent: true, opacity: 1 });
@@ -488,13 +488,13 @@
 		═══════════════════════════════════════════════════════════ */
 		const characterGroup = new THREE.Group();
 		{
-			const skin = mat(0xffccaa), shirt = mat(0x3a3acc, { roughness: 0.8 });
-			const pants = mat(0x223355, { roughness: 0.85 }), hair = mat(0x1a0f05);
+			const skin = mat(0xffccaa), shirt = mat(0x7b244f, { roughness: 0.8 });
+			const pants = mat(0x24162c, { roughness: 0.85 }), hair = mat(0x1a0f05);
 			const shoe = mat(0x111111), glass = gloss(0x222233, { metalness: 0.85, roughness: 0.08 });
 
 			const torso = new THREE.Mesh(new THREE.BoxGeometry(0.38, 0.46, 0.22), shirt);
 			torso.position.set(0, 0.87, 0.02); torso.castShadow = true; characterGroup.add(torso);
-			const stripe = new THREE.Mesh(new THREE.BoxGeometry(0.08, 0.30, 0.012), mat(0x5555dd));
+			const stripe = new THREE.Mesh(new THREE.BoxGeometry(0.08, 0.30, 0.012), mat(0xff4f91));
 			stripe.position.set(0, 0.87, 0.117); characterGroup.add(stripe);
 			const collarL = new THREE.Mesh(new THREE.BoxGeometry(0.08, 0.06, 0.012), mat(0xfafafa));
 			collarL.position.set(-0.05, 1.09, 0.116); collarL.rotation.z = 0.35; characterGroup.add(collarL);
@@ -582,9 +582,9 @@
 			hpBand.position.set(0, 1.38, 0.02); hpBand.rotation.z = Math.PI / 2; characterGroup.add(hpBand);
 
 			// Laptop on lap
-			const lapBase = new THREE.Mesh(new THREE.BoxGeometry(0.42, 0.032, 0.30), gloss(0x2c2c36, { metalness: 0.6 }));
+			const lapBase = new THREE.Mesh(new THREE.BoxGeometry(0.42, 0.032, 0.30), gloss(0x25202a, { metalness: 0.6 }));
 			lapBase.position.set(0, 0.66, 0.19); lapBase.rotation.x = -0.08; lapBase.castShadow = true; characterGroup.add(lapBase);
-			const lapScreen = new THREE.Mesh(new THREE.BoxGeometry(0.40, 0.27, 0.016), gloss(0x2c2c36, { metalness: 0.6 }));
+			const lapScreen = new THREE.Mesh(new THREE.BoxGeometry(0.40, 0.27, 0.016), gloss(0x25202a, { metalness: 0.6 }));
 			lapScreen.position.set(0, 0.86, 0.01); lapScreen.rotation.x = -1.05; characterGroup.add(lapScreen);
 			const lapDispMat = emMat(0x0d1f3c, 0x2244ee, 0.9);
 			(lapDispMat as any)._baseIntensity = lapDispMat.emissiveIntensity; laptopScreenMats.push(lapDispMat);
@@ -645,7 +645,7 @@
 			bedBodyLump = new THREE.Group();
 			const BSY = 0.52, HZ = -BED_L / 2 + 0.26, S = 1.18;
 			const _skin = mat(0xf0c090, { roughness: 0.75 }), _hair = mat(0x1a1008, { roughness: 0.85 });
-			const _shirt = mat(0x3a3acc, { roughness: 0.8 }), _blkA = mat(0x1c2e55, { roughness: 0.90 }), _blkB = mat(0x253e6e, { roughness: 0.88 });
+			const _shirt = mat(0x7b244f, { roughness: 0.8 }), _blkA = mat(0x1c2e55, { roughness: 0.90 }), _blkB = mat(0x253e6e, { roughness: 0.88 });
 			const blkUpper = new THREE.Mesh(new THREE.BoxGeometry(BED_W - 0.08, 0.26, 1.22), _blkA);
 			blkUpper.position.set(0, BSY + 0.18, -BED_L / 2 + 1.16); bedBodyLump.add(blkUpper);
 			const blkMid = new THREE.Mesh(new THREE.BoxGeometry(BED_W - 0.08, 0.20, 0.93), _blkA);
@@ -753,7 +753,7 @@
 			particlePos[i * 3 + 2] = Math.random() * -8 - 0.3;
 		}
 		particleGeo.setAttribute('position', new THREE.BufferAttribute(particlePos, 3));
-		scene.add(new THREE.Points(particleGeo, new THREE.PointsMaterial({ color: 0x9aafff, size: 0.042, sizeAttenuation: true, transparent: true, opacity: 0.55, depthWrite: false })));
+		scene.add(new THREE.Points(particleGeo, new THREE.PointsMaterial({ color: 0xff79a9, size: 0.042, sizeAttenuation: true, transparent: true, opacity: 0.55, depthWrite: false })));
 		particleGeoRef = particleGeo;
 
 		/* ── Corner plants ────────────────────────────────────────── */
@@ -789,21 +789,21 @@
 			}
 		});
 
-		setProgress(86, 'Wiring interactions…');
+		setProgress(86, 'Preparando interacciones…');
 
 		/* ═══════════════════════════════════════════════════════════
 		   FLOATING LABELS
 		═══════════════════════════════════════════════════════════ */
 		labelDefs = [
-			{ key: 'laptop', mesh: laptopGroup, icon: '💻', text: 'Projects', offset: new THREE.Vector3(0, 0.7, 0) },
-			{ key: 'bookshelf', mesh: bookshelfGroup, icon: '📚', text: 'Skills', offset: new THREE.Vector3(0, 2.3, 0) },
-			{ key: 'frame', mesh: wallFrameGroup, icon: '🖼️', text: 'About Me', offset: new THREE.Vector3(0, 1.0, 0) },
-			{ key: 'character', mesh: characterGroup, icon: '🛏️', text: 'Contact', offset: new THREE.Vector3(0, 2.0, 0), getMesh: () => charState === 'sleeping' ? bedBodyLump : characterGroup },
+			{ key: 'laptop', mesh: laptopGroup, text: 'PROYECTOS', subtext: 'PORTFOLIO Y TRABAJOS', offset: new THREE.Vector3(0, 0.7, 0) },
+			{ key: 'bookshelf', mesh: bookshelfGroup, text: 'HABILIDADES', subtext: 'TECNOLOGÍAS', offset: new THREE.Vector3(0, 2.3, 0) },
+			{ key: 'frame', mesh: wallFrameGroup, text: 'SOBRE MÍ', subtext: 'PERFIL', offset: new THREE.Vector3(0, 1.0, 0) },
+			{ key: 'character', mesh: characterGroup, text: 'CONTACTO', subtext: 'PONTE EN CONTACTO', offset: new THREE.Vector3(0, 2.0, 0), getMesh: () => charState === 'sleeping' ? bedBodyLump : characterGroup },
 		];
 		labelDefs.forEach(def => {
 			const div = document.createElement('div');
 			div.className = 'scene-label';
-			div.innerHTML = `<span class="label-emoji">${def.icon}</span><span class="label-text">${def.text}</span>`;
+			div.innerHTML = `<span class="label-copy"><span class="label-text">${def.text}</span><span class="label-subtext">${def.subtext}</span></span>`;
 			if ('ontouchstart' in window) {
 				div.style.pointerEvents = 'auto';
 				div.addEventListener('click', (e: Event) => { e.stopPropagation(); const obj = interactiveObjects.find((o: any) => o.key === def.key); if (obj) focusObject(obj); });
@@ -847,26 +847,26 @@
 		═══════════════════════════════════════════════════════════ */
 		function updateRoomLighting(now: Date) {
 			const h24 = now.getHours() + now.getMinutes() / 60;
-			let dayT = h24 < 5 ? 0 : h24 < 7 ? (h24 - 5) / 2 : h24 < 18 ? 1 : h24 < 20 ? 1 - (h24 - 18) / 2 : 0;
-			const glowT = (h24 >= 5 && h24 < 8) ? Math.sin(((h24 - 5) / 3) * Math.PI) : (h24 >= 17 && h24 < 20) ? Math.sin(((h24 - 17) / 3) * Math.PI) : 0;
+			let dayT = h24 < 5 ? 0 : h24 < 7 ? (h24 - 5) / 2 : h24 < 18 ? 1 : h24 < 21 ? 1 - (h24 - 18) / 3 : 0;
+			const glowT = (h24 >= 5 && h24 < 8) ? Math.sin(((h24 - 5) / 3) * Math.PI) : (h24 >= 16.5 && h24 < 21) ? Math.sin(((h24 - 16.5) / 4.5) * Math.PI) : 0;
 
-			ambient.color.lerpColors(new THREE.Color(0x1a1b38), new THREE.Color(0xc8d0ff), dayT);
-			if (glowT > 0) ambient.color.lerp(new THREE.Color(0x6b3318), glowT * 0.4);
+			ambient.color.lerpColors(new THREE.Color(0x210a22), new THREE.Color(0xffb0a0), dayT);
+			if (glowT > 0) ambient.color.lerp(new THREE.Color(0xff4f73), glowT * 0.4);
 			ambient.intensity = 1.2 + dayT * 0.8;
 
-			dirLight.color.lerpColors(new THREE.Color(0x1a2650), new THREE.Color(0xfff8f0), dayT);
-			if (glowT > 0) dirLight.color.lerp(new THREE.Color(0xff7722), glowT * 0.7);
+			dirLight.color.lerpColors(new THREE.Color(0x2a1238), new THREE.Color(0xff9a6a), dayT);
+			if (glowT > 0) dirLight.color.lerp(new THREE.Color(0xff4f91), glowT * 0.7);
 			dirLight.intensity = 0.6 + dayT * 2.2;
 
-			const moonColor = new THREE.Color(0x8899cc);
-			const paneColor = new THREE.Color(0x1a2244).lerp(new THREE.Color(0x6699cc), dayT);
-			if (glowT > 0) paneColor.lerp(new THREE.Color(0xdd5500), glowT * 0.65);
+			const moonColor = new THREE.Color(0xff5d9a);
+			const paneColor = new THREE.Color(0x180a24).lerp(new THREE.Color(0xff8d7a), dayT);
+			if (glowT > 0) paneColor.lerp(new THREE.Color(0xff4f91), glowT * 0.65);
 			winPaneMats.forEach(m => { m.color.copy(paneColor); m.emissive.copy(dayT < 0.1 ? moonColor : paneColor); m.emissiveIntensity = dayT < 0.1 ? 0.55 : 0.05 + dayT * 0.5 + glowT * 0.35; });
-			winLight.color.lerpColors(moonColor, new THREE.Color(0xaaccff), dayT);
-			if (glowT > 0) winLight.color.lerp(new THREE.Color(0xff8844), glowT * 0.6);
+			winLight.color.lerpColors(moonColor, new THREE.Color(0x5ee7d0), dayT);
+			if (glowT > 0) winLight.color.lerp(new THREE.Color(0xff8a70), glowT * 0.6);
 			winLight.intensity = 0.55 * (1 - dayT) + 0.05 + dayT * 1.15 + glowT * 0.4;
 
-			fillLeft.color.lerpColors(new THREE.Color(0x3355aa), new THREE.Color(0x88aaff), dayT);
+			fillLeft.color.lerpColors(new THREE.Color(0x35134f), new THREE.Color(0x5ee7d0), dayT);
 			fillLeft.intensity = 0.9 + dayT * 0.6;
 			fillRight.intensity = 1.0 + dayT * 0.4;
 			ceilBounce.intensity = 0.8 + dayT * 0.5;
@@ -887,8 +887,8 @@
 
 		function updateWallFrameTime(now: Date) {
 			const h24 = now.getHours() + now.getMinutes() / 60;
-			let dayT = h24 < 5 ? 0 : h24 < 7 ? (h24 - 5) / 2 : h24 < 18 ? 1 : h24 < 20 ? 1 - (h24 - 18) / 2 : 0;
-			const glowT = (h24 >= 5 && h24 < 8) ? Math.sin(((h24 - 5) / 3) * Math.PI) : (h24 >= 17 && h24 < 20) ? Math.sin(((h24 - 17) / 3) * Math.PI) : 0;
+			let dayT = h24 < 5 ? 0 : h24 < 7 ? (h24 - 5) / 2 : h24 < 18 ? 1 : h24 < 21 ? 1 - (h24 - 18) / 3 : 0;
+			const glowT = (h24 >= 5 && h24 < 8) ? Math.sin(((h24 - 5) / 3) * Math.PI) : (h24 >= 16.5 && h24 < 21) ? Math.sin(((h24 - 16.5) / 4.5) * Math.PI) : 0;
 			const skyColor = new THREE.Color(0x0a0a25).lerp(new THREE.Color(0x2277bb), dayT);
 			if (glowT > 0) skyColor.lerp(new THREE.Color(0xcc5511), glowT * 0.6);
 			wfSkyMat.color.copy(skyColor);
@@ -977,7 +977,7 @@
 			const hits = raycaster.intersectObjects(allInteractiveMeshes, false);
 			const obj = hits.length > 0 ? resolveHit(hits[0].object) : null;
 			if (obj) {
-				if (obj !== hoveredObject) { if (hoveredObject) clearEmissive(getActiveMesh(hoveredObject)); hoveredObject = obj; setEmissive(getActiveMesh(hoveredObject), 0x9977ff, 0.4); }
+				if (obj !== hoveredObject) { if (hoveredObject) clearEmissive(getActiveMesh(hoveredObject)); hoveredObject = obj; setEmissive(getActiveMesh(hoveredObject), 0xff8d79, 0.5); }
 				canvasEl.style.cursor = 'pointer';
 			} else { if (hoveredObject) { clearEmissive(getActiveMesh(hoveredObject)); hoveredObject = null; } canvasEl.style.cursor = 'default'; }
 		});
@@ -1073,7 +1073,7 @@
 	});
 </script>
 
-<canvas bind:this={canvasEl} aria-label="Interactive 3D portfolio room — use mouse to orbit, click objects to explore"></canvas>
+<canvas bind:this={canvasEl} aria-label="Portfolio 3D interactivo — usa el ratón para explorar y haz clic en los objetos"></canvas>
 <div bind:this={labelsEl} class="labels-container" aria-hidden="true"></div>
 
 <style>
@@ -1098,16 +1098,33 @@
 		align-items: center;
 		gap: 6px;
 		padding: 5px 10px;
-		background: rgba(0 0 0 / 0.55);
-		backdrop-filter: blur(6px);
-		border-radius: 20px;
+		background: linear-gradient(135deg, rgba(30, 7, 27, 0.88), rgba(10, 8, 17, 0.82));
+		backdrop-filter: blur(10px) saturate(1.2);
+		border-radius: 3px;
 		color: #fff;
-		font-size: 13px;
-		font-weight: 500;
+		font-size: 11px;
+		font-weight: 700;
 		pointer-events: none;
 		opacity: 0;
 		transition: opacity 0.25s ease;
 		white-space: nowrap;
 	}
-	:global(.label-emoji) { font-size: 15px; }
+	:global(.label-copy) { display: flex; flex-direction: column; gap: 1px; }
+	:global(.label-text) { letter-spacing: .13em; color: #fff3ed; }
+	:global(.label-subtext) {
+		font-size: 8px;
+		font-weight: 500;
+		letter-spacing: .16em;
+		color: #d9a9b5;
+	}
+	:global(.scene-label)::before {
+		content: '';
+		width: 18px;
+		height: 1px;
+		background: linear-gradient(90deg, #ff4f91, #ff9a6a);
+		box-shadow: 0 0 8px rgba(255, 79, 145, .5);
+		position: absolute;
+		top: 0;
+		left: 0;
+	}
 </style>

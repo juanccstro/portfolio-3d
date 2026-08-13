@@ -3,7 +3,7 @@
 </script>
 
 {#if !loading.done}
-	<div class="loading-screen" role="status" aria-live="polite" aria-label="Cargando escena 3D">
+	<div class="loading-screen" role="status" aria-live="polite" aria-label="Cargando portfolio">
 		<div class="loader-title">Habitación Portfolio</div>
 		<div class="loader-bar-wrap">
 			<div class="loader-bar" style="width: {loading.progress}%"></div>

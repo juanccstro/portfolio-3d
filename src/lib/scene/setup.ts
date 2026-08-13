@@ -4,8 +4,8 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
-export const DEFAULT_CAM_POS = new THREE.Vector3(0, 2.8, 5.2);
-export const DEFAULT_CAM_TARGET = new THREE.Vector3(0, 1.4, -3.5);
+export const DEFAULT_CAM_POS = new THREE.Vector3(0, 2.9, 5.6);
+export const DEFAULT_CAM_TARGET = new THREE.Vector3(0, 1.45, -3.7);
 
 export function createRenderer(canvas: HTMLCanvasElement, isMobile: boolean) {
 	const renderer = new THREE.WebGLRenderer({ canvas, antialias: !isMobile });
@@ -15,19 +15,21 @@ export function createRenderer(canvas: HTMLCanvasElement, isMobile: boolean) {
 	renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 	renderer.outputColorSpace = THREE.SRGBColorSpace;
 	renderer.toneMapping = THREE.ACESFilmicToneMapping;
-	renderer.toneMappingExposure = 2.2;
+	renderer.toneMappingExposure = 1.75;
+	// Slightly richer contrast for the neon/sunset palette.
+	renderer.toneMappingExposure = isMobile ? 1.65 : 1.75;
 	return renderer;
 }
 
 export function createCamera(isMobile: boolean) {
 	const camera = new THREE.PerspectiveCamera(
-		isMobile ? 65 : 55,
+		isMobile ? 62 : 52,
 		window.innerWidth / window.innerHeight,
 		0.1,
 		60
 	);
 	// Start high for intro fly-in
-	camera.position.set(0, 7, 14);
+	camera.position.set(0, 8.5, 16.5);
 	camera.lookAt(DEFAULT_CAM_TARGET);
 	return camera;
 }
@@ -36,7 +38,7 @@ export function createControls(camera: THREE.PerspectiveCamera, canvas: HTMLCanv
 	const controls = new OrbitControls(camera, canvas);
 	controls.target.copy(DEFAULT_CAM_TARGET);
 	controls.enableDamping = true;
-	controls.dampingFactor = 0.07;
+	controls.dampingFactor = 0.055;
 	controls.minDistance = isMobile ? 2 : 2.5;
 	controls.maxDistance = isMobile ? 12 : 9;
 	controls.maxPolarAngle = Math.PI / 2.08;
